@@ -1,0 +1,131 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'CH Serif Bold';
+  src: url('/fonts/serif-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CH Sans Bold';
+  src: url('/fonts/sans-bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: block;
+}
+@font-face {
+  font-family: 'CH Sans Regular';
+  src: url('/fonts/sans-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: block;
+}
+
+:root {
+  --diu-blue: #0b4f9c;
+  --diu-blue-dark: #083b76;
+  --ink: #0f172a;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  background: #eef2f7;
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------------- the A4/Letter page ---------------- */
+.page-shell {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08), 0 12px 32px -8px rgba(15, 23, 42, 0.25);
+}
+.page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 612px;
+  height: 792px;
+  transform-origin: 0 0;
+  user-select: none;
+}
+.page img.base {
+  position: absolute;
+  inset: 0;
+  width: 612px;
+  height: 792px;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* one editable place on the template */
+.pf {
+  position: absolute;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 1px;
+  background: transparent;
+  color: #000;
+  caret-color: #1d4ed8;
+  outline: none;
+  overflow: hidden;
+  white-space: pre;
+  resize: none;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-feature-settings: 'kern' 0, 'liga' 0;
+  text-rendering: geometricPrecision;
+  user-select: text;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.pf.serif-bold { font-family: 'CH Serif Bold', 'Liberation Serif', 'Times New Roman', serif; font-weight: 700; }
+.pf.sans-bold { font-family: 'CH Sans Bold', Carlito, Calibri, sans-serif; font-weight: 700; }
+.pf.sans-regular { font-family: 'CH Sans Regular', Carlito, Calibri, sans-serif; font-weight: 400; }
+.pf::placeholder {
+  color: rgba(29, 78, 216, 0.5);
+  font-style: italic;
+  font-weight: 400;
+  opacity: 1;
+}
+.pf.multi {
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-align: justify;
+  text-align-last: left;
+}
+
+/* hints are editor-only – they are never part of the PDF */
+.hints .pf { background: rgba(37, 99, 235, 0.055); box-shadow: inset 0 -1px 0 rgba(37, 99, 235, 0.35); }
+.hints .pf.empty { background: rgba(37, 99, 235, 0.11); box-shadow: inset 0 -1px 0 rgba(37, 99, 235, 0.6); }
+.pf:hover { background: rgba(37, 99, 235, 0.16) !important; cursor: text; }
+.pf:focus,
+.pf.active {
+  background: rgba(37, 99, 235, 0.13) !important;
+  box-shadow: 0 0 0 1.5px #2563eb !important;
+  overflow: visible;
+}
+.pf.invalid { background: rgba(239, 68, 68, 0.14) !important; box-shadow: 0 0 0 1.5px #ef4444 !important; }
+.pf.invalid::placeholder { color: rgba(220, 38, 38, 0.7); }
+
+/* ---------------- side form ---------------- */
+.f-input {
+  width: 100%;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #fff;
+  padding: 9px 12px;
+  font-size: 15px;
+  line-height: 1.25;
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.f-input:focus { outline: none; border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18); }
+.f-input.invalid { border-color: #ef4444; box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15); }
+.f-input.is-active { border-color: #2563eb; }
