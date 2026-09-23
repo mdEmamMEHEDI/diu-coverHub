@@ -6,6 +6,7 @@ import { PAGE_W, TEMPLATES, TEMPLATE_LIST, resolve, type FieldDef } from './lib/
 import { sanitize } from './lib/text';
 import { buildPdf, downloadBytes, readAssignment, type AssignmentFile } from './lib/pdf';
 import { AttachBar } from './components/AttachBar';
+import { DeptPicker } from './components/DeptPicker';
 
 type Mobile = 'page' | 'form';
 
@@ -150,23 +151,7 @@ export default function App() {
             <label htmlFor="dept" className="sr-only text-xs font-semibold uppercase tracking-wider text-slate-500 sm:not-sr-only">
               Department
             </label>
-            <div className="relative min-w-0 flex-1 sm:flex-none">
-              <select
-                id="dept"
-                value={state.template}
-                onChange={(e) => switchTemplate(e.target.value as typeof state.template)}
-                className="w-full appearance-none rounded-lg border border-slate-300 bg-white py-2 pl-3 pr-9 text-sm font-semibold text-[color:var(--diu-blue)] shadow-sm hover:border-blue-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-200 sm:min-w-[300px]"
-              >
-                {TEMPLATE_LIST.map((t) => (
-                  <option key={t.id} value={t.id}>
-                    {t.short} – {t.name}
-                  </option>
-                ))}
-              </select>
-              <svg className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-500" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="m6 9 6 6 6-6" />
-              </svg>
-            </div>
+            <DeptPicker templates={TEMPLATE_LIST} value={state.template} onChange={switchTemplate} />
           </div>
 
           <div className="flex w-full flex-wrap items-start justify-end gap-2 sm:ml-auto sm:w-auto sm:flex-nowrap">

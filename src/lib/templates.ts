@@ -39,6 +39,7 @@ export interface TemplateDef {
   short: string;
   name: string;
   description: string;
+  keywords?: string[];
   pdf: string;
   image: string;
   fileTag: string;
@@ -56,6 +57,7 @@ const nfe: TemplateDef = {
   short: 'NFE',
   name: 'Nutrition & Food Engineering',
   description: 'Assignment / lab cover with evaluation table',
+  keywords: ['nutrition', 'food', 'engineering'],
   pdf: '/templates/nfe.pdf',
   image: '/templates/nfe.png',
   fileTag: 'NFE',
@@ -134,6 +136,7 @@ const swe: TemplateDef = {
   short: 'SWE',
   name: 'Software Engineering',
   description: 'Course assignment report with teacher rubric',
+  keywords: ['software', 'computing', 'computer'],
   pdf: '/templates/swe.pdf',
   image: '/templates/swe.png',
   fileTag: 'SWE',
