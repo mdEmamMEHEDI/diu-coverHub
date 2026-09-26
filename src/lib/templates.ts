@@ -3,7 +3,7 @@ import type { FontKey, MultiSpec } from './text';
 export const PAGE_W = 612;
 export const PAGE_H = 792;
 
-export type TemplateId = 'nfe' | 'swe';
+export type TemplateId = 'nfe' | 'swe' | 'eee';
 export type Group = 'Document' | 'Student' | 'Course' | 'Teacher' | 'Submission';
 
 export interface FieldDef {
@@ -44,6 +44,8 @@ export interface TemplateDef {
   image: string;
   fileTag: string;
   fields: FieldDef[];
+  pageW?: number;
+  pageH?: number;
 }
 
 const year = new Date().getFullYear();
@@ -193,8 +195,80 @@ const swe: TemplateDef = {
   ],
 };
 
-export const TEMPLATES: Record<TemplateId, TemplateDef> = { nfe, swe };
-export const TEMPLATE_LIST: TemplateDef[] = [nfe, swe];
+const eee: TemplateDef = {
+  id: 'eee',
+  short: 'EEE',
+  name: 'Electrical & Electronic Engineering',
+  description: 'Lab experiment cover with grade and submitted-by boxes',
+  keywords: ['electrical', 'electronic', 'engineering', 'eee'],
+  pdf: '/templates/eee.pdf',
+  image: '/templates/eee.png',
+  fileTag: 'EEE',
+  pageW: 595.3,
+  pageH: 841.9,
+  fields: [
+    {
+      key: 'experimentNo', label: 'Experiment No', placeholder: 'no.', group: 'Document',
+      x: 193.5, width: 350, baseline: 165, font: 'serif-bold', size: 16,
+    },
+    {
+      key: 'experimentName', label: 'Experiment Name', placeholder: 'experiment name', group: 'Document',
+      x: 221.2, width: 322, baseline: 193.4, font: 'serif-bold', size: 16,
+    },
+    {
+      key: 'courseCode', label: 'Course Code', placeholder: 'code', group: 'Course',
+      x: 151.9, width: 392, baseline: 237.5, font: 'serif-regular', size: 16, required: true, shared: true,
+    },
+    {
+      key: 'courseTitle', label: 'Course Title', placeholder: 'course title', group: 'Course',
+      x: 146.8, width: 397, baseline: 262.1, font: 'serif-regular', size: 16, required: true,
+    },
+    {
+      key: 'teacherName', label: 'Instructor', placeholder: 'teacher name', group: 'Teacher',
+      x: 131.1, width: 413, baseline: 286.7, font: 'serif-regular', size: 16, required: true, shared: true,
+    },
+    {
+      key: 'designation', label: 'Designation', placeholder: 'designation', group: 'Teacher',
+      x: 145.5, width: 399, baseline: 311.3, font: 'serif-regular', size: 16, shared: true,
+      presets: ['Lecturer', 'Senior Lecturer', 'Assistant Professor', 'Associate Professor', 'Professor'],
+    },
+    {
+      key: 'studentName', label: 'Student Name', placeholder: 'your name', group: 'Student',
+      x: 404.3, width: 148, baseline: 399.9, font: 'serif-regular', size: 14, required: true, shared: true,
+    },
+    {
+      key: 'studentId', label: 'Student ID', placeholder: '000-00-000', group: 'Student',
+      x: 404.3, width: 148, baseline: 420, font: 'serif-regular', size: 14, required: true, shared: true,
+    },
+    {
+      key: 'batch', label: 'Batch', placeholder: 'batch', group: 'Student',
+      x: 404.3, width: 148, baseline: 440.2, font: 'serif-regular', size: 14,
+    },
+    {
+      key: 'levelTerm', label: 'Level-Term', placeholder: 'L1,T1', group: 'Student',
+      x: 404.3, width: 148, baseline: 460.3, font: 'serif-regular', size: 14,
+    },
+    {
+      key: 'section', label: 'Section', placeholder: 'section', group: 'Student',
+      x: 404.3, width: 148, baseline: 480.5, font: 'serif-regular', size: 14, shared: true,
+    },
+    {
+      key: 'labGroup', label: 'Lab Group', placeholder: 'lab group', group: 'Student',
+      x: 404.3, width: 148, baseline: 500.6, font: 'serif-regular', size: 14,
+    },
+    {
+      key: 'experimentDate', label: 'Experiment Date', placeholder: 'dd-mm-yyyy', group: 'Submission',
+      x: 167.4, width: 110, baseline: 449.1, font: 'serif-regular', size: 14, date: true,
+    },
+    {
+      key: 'submissionDate', label: 'Submission Date', placeholder: 'dd-mm-yyyy', group: 'Submission',
+      x: 168.8, width: 110, baseline: 469.2, font: 'serif-regular', size: 14, shared: true, date: true,
+    },
+  ],
+};
+
+export const TEMPLATES: Record<TemplateId, TemplateDef> = { nfe, swe, eee };
+export const TEMPLATE_LIST: TemplateDef[] = [nfe, swe, eee];
 export const GROUP_ORDER: Group[] = ['Document', 'Student', 'Course', 'Teacher', 'Submission'];
 
 export type Values = Record<string, string>;

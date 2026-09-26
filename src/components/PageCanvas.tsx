@@ -99,10 +99,13 @@ function FieldBox({ def, template, values, active, invalid, onChange, onActive, 
 }
 
 function PageCanvasBase({ template, values, scale, hints, activeKey, invalidKeys, onChange, onActive, onEnter }: Props) {
+  const pageW = template.pageW ?? PAGE_W;
+  const pageH = template.pageH ?? PAGE_H;
+
   return (
-    <div className={`page-shell ${hints ? 'hints' : ''}`} style={{ width: PAGE_W * scale, height: PAGE_H * scale }}>
-      <div className="page" style={{ transform: `scale(${scale})` }}>
-        <img className="base" src={template.image} alt={`${template.name} cover page template`} width={PAGE_W} height={PAGE_H} draggable={false} />
+    <div className={`page-shell ${hints ? 'hints' : ''}`} style={{ width: pageW * scale, height: pageH * scale }}>
+      <div className="page" style={{ width: pageW, height: pageH, transform: `scale(${scale})` }}>
+        <img className="base" src={template.image} alt={`${template.name} cover page template`} width={pageW} height={pageH} draggable={false} />
         {template.fields.map((def) => (
           <FieldBox
             key={def.key}

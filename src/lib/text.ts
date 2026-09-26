@@ -1,6 +1,6 @@
 import metrics from './metrics.json';
 
-export type FontKey = 'serif-bold' | 'sans-bold' | 'sans-regular';
+export type FontKey = 'serif-bold' | 'serif-regular' | 'sans-bold' | 'sans-regular';
 
 type FontMetrics = { upm: number; asc: number; desc: number; widths: Record<string, number> };
 const M = metrics as unknown as Record<FontKey, FontMetrics>;

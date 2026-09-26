@@ -7,6 +7,12 @@
   font-display: block;
 }
 @font-face {
+  font-family: 'CH Serif Regular';
+  src: url('/fonts/serif-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: block;
+}
+@font-face {
   font-family: 'CH Sans Bold';
   src: url('/fonts/sans-bold.ttf') format('truetype');
   font-weight: 700;
@@ -56,8 +62,8 @@ body {
 .page img.base {
   position: absolute;
   inset: 0;
-  width: 612px;
-  height: 792px;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   -webkit-user-drag: none;
 }
@@ -86,6 +92,7 @@ body {
   appearance: none;
 }
 .pf.serif-bold { font-family: 'CH Serif Bold', 'Liberation Serif', 'Times New Roman', serif; font-weight: 700; }
+.pf.serif-regular { font-family: 'CH Serif Regular', 'Liberation Serif', 'Times New Roman', serif; font-weight: 400; }
 .pf.sans-bold { font-family: 'CH Sans Bold', Carlito, Calibri, sans-serif; font-weight: 700; }
 .pf.sans-regular { font-family: 'CH Sans Regular', Carlito, Calibri, sans-serif; font-weight: 400; }
 .pf::placeholder {

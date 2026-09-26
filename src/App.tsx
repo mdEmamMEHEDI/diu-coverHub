@@ -40,7 +40,7 @@ export default function App() {
     setStageW(el.clientWidth);
     return () => ro.disconnect();
   }, [mobileTab]);
-  const fitScale = Math.min(1.25, Math.max(0.35, (stageW - 32) / PAGE_W));
+  const fitScale = Math.min(1.25, Math.max(0.35, (stageW - 32) / (template.pageW ?? PAGE_W)));
   const scale = zoom === 'fit' ? fitScale : zoom;
   const bump = (d: number) => setZoom(Math.min(2.2, Math.max(0.4, +(scale + d).toFixed(2))));
 

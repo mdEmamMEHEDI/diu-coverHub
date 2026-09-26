@@ -13,7 +13,7 @@ type Action =
   | { type: 'reset' };
 
 const KEY = 'diu-coverhub:v1';
-const empty = (): State => ({ template: 'nfe', values: { nfe: {}, swe: {} } });
+const empty = (): State => ({ template: 'nfe', values: { nfe: {}, swe: {}, eee: {} } });
 
 function load(): State {
   try {
@@ -21,7 +21,7 @@ function load(): State {
     if (!raw) return empty();
     const p = JSON.parse(raw) as State;
     if (!p || !TEMPLATES[p.template]) return empty();
-    return { template: p.template, values: { nfe: p.values?.nfe ?? {}, swe: p.values?.swe ?? {} } };
+    return { template: p.template, values: { nfe: p.values?.nfe ?? {}, swe: p.values?.swe ?? {}, eee: p.values?.eee ?? {} } };
   } catch {
     return empty();
   }

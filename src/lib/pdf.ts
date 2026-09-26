@@ -3,6 +3,7 @@ import { fitSingle, layoutMulti, measure, type FontKey } from './text';
 
 const FONT_URL: Record<FontKey, string> = {
   'serif-bold': '/fonts/serif-bold.ttf',
+  'serif-regular': '/fonts/serif-regular.ttf',
   'sans-bold': '/fonts/sans-bold.ttf',
   'sans-regular': '/fonts/sans-regular.ttf',
 };
@@ -43,7 +44,7 @@ export async function buildPdf(t: TemplateDef, values: Values, assignment?: Arra
         const first = i === 0;
         const x0 = def.multi!.x + (first ? def.multi!.firstIndent : 0);
         const avail = def.multi!.width - (first ? def.multi!.firstIndent : 0);
-        const y = PAGE_H - (def.baseline + i * lay.lineHeight);
+        const y = (t.pageH ?? PAGE_H) - (def.baseline + i * lay.lineHeight);
         const last = i === lay.lines.length - 1;
         const words = line.split(' ');
         if (last || words.length < 2) {
@@ -64,7 +65,7 @@ export async function buildPdf(t: TemplateDef, values: Values, assignment?: Arra
 
     const fit = fitSingle(def.font, value, def.size, def.width);
     const x = def.align === 'center' ? def.x + (def.width - fit.width) / 2 : def.x;
-    page.drawText(value, { x, y: PAGE_H - def.baseline, size: fit.size, font, color: black });
+    page.drawText(value, { x, y: (t.pageH ?? PAGE_H) - def.baseline, size: fit.size, font, color: black });
   }
 
   // append the student's assignment after the cover page
